@@ -17,6 +17,8 @@ These codes allow the application of latent variable models in the context of ne
 
 * https://github.com/igollini/lvm4net/tree/master/R
 
+* https://github.com/YouGov-Data/covid-19-tracker
+
 <!---
 * Failli, D., Marino, M.F., Martella, F. (2022) Extending finite mixtures of latent trait analyzers for bipartite networks. In Balzanella A., Bini M., Cavicchia C. and Verde R. (Eds.) Book of short Paper SIS 2022 (pp. 540-550), Pearson.
 -->
