@@ -7,6 +7,8 @@ These codes allow the application of latent variable models in the context of ne
 
 * Gollini, I. (2020). A mixture model approach for clustering bipartite networks. Challenges in Social Network Research Volume in the Lecture Notes in Social Networks (LNSN - Series of Springer).
 
+* https://github.com/igollini/lvm4net/tree/master/R
+
 <!---
 * Failli, D., Marino, M.F., Martella, F. (2022) Extending finite mixtures of latent trait analyzers for bipartite networks. In Balzanella A., Bini M., Cavicchia C. and Verde R. (Eds.) Book of short Paper SIS 2022 (pp. 540-550), Pearson.
 -->
