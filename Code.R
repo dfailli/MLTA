@@ -1716,7 +1716,7 @@ f_mlta <- function(X, DM, G, D, tol, maxiter, pdGH, beta0)
         w[, , g] <- as.matrix(t(w[, , g]))
         b[g, ] <- wh[D + 1, ]
         
-        # Approximation of log(p(x�z))
+        # Approximation of log(p(x¦z))
         
         lxi[g, ] <-
           0.5 * log(C[, , , g]) + c(mu[, , g]) ^ 2 / (2 * C[, , , g]) +
@@ -1848,7 +1848,7 @@ f_mlta <- function(X, DM, G, D, tol, maxiter, pdGH, beta0)
         w[, , g] <- as.matrix(w[, , g])
         b[g, ] <- wh[D + 1, ]
         
-        # Approximation of log(p(x�z))
+        # Approximation of log(p(x¦z))
         
         detC <- C2[1, ] * C2[4, ] - C2[3, ] * C2[2, ]
         
@@ -1979,7 +1979,7 @@ f_mlta <- function(X, DM, G, D, tol, maxiter, pdGH, beta0)
         w[, , g] <- as.matrix(w[, , g])
         b[g, ] <- wh[D + 1, ]
         
-        # Approximation of log(p(x�z))
+        # Approximation of log(p(x¦z))
         
         detC <- apply(C2, 2, function(x)
           det(matrix(x, D, D)))
@@ -2252,7 +2252,7 @@ b0 <- b
 w0 <- w
 
 
-# Setting without class separation
+# Setting with lower class separation
 G=3
 beta0 = matrix(c(1,-0.4,1.5,-0.9),2,2) 
 load("~/bnsep.RData")
@@ -2432,12 +2432,12 @@ par(mar=c(5,5,5,5), xpd=FALSE)
 par(mfrow=c(1,1))
 plot(M$z[,1], pch = 19, col="cadetblue4",
      xlab = "Individui",
-     ylab = "ProbabilitÃ  di appartenere al gruppo 1", cex.lab=2, cex.axis=2, cex.main=2, cex.sub=2)
+     ylab = "ProbabilitÃÂ  di appartenere al gruppo 1", cex.lab=2, cex.axis=2, cex.main=2, cex.sub=2)
 abline(h = 0.5, col = "red")
 
 plot(M$z[,2], pch = 19, col="cadetblue4",
      xlab = "Individui",
-     ylab = "ProbabilitÃ  di appartenere al gruppo 2", cex.lab=2, cex.axis=2, cex.main=2, cex.sub=2)
+     ylab = "ProbabilitÃÂ  di appartenere al gruppo 2", cex.lab=2, cex.axis=2, cex.main=2, cex.sub=2)
 abline(h = 0.5, col = "red")
 
 
