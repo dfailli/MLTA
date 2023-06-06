@@ -17,6 +17,7 @@ These codes allow the application of latent variable models in the context of ne
 
 * https://github.com/igollini/lvm4net/tree/master/R
 
+#### Data
 * https://github.com/YouGov-Data/covid-19-tracker
 
 <!---
