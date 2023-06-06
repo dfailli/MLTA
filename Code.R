@@ -2428,23 +2428,9 @@ M$w
 M$beta
 M$rrr
 
-par(mar=c(5,5,5,5), xpd=FALSE)
-par(mfrow=c(1,1))
-plot(M$z[,1], pch = 19, col="cadetblue4",
-     xlab = "Individui",
-     ylab = "ProbabilitÃÂ  di appartenere al gruppo 1", cex.lab=2, cex.axis=2, cex.main=2, cex.sub=2)
-abline(h = 0.5, col = "red")
-
-plot(M$z[,2], pch = 19, col="cadetblue4",
-     xlab = "Individui",
-     ylab = "ProbabilitÃÂ  di appartenere al gruppo 2", cex.lab=2, cex.axis=2, cex.main=2, cex.sub=2)
-abline(h = 0.5, col = "red")
-
-
 class <- apply(M$z,1,which.max)
 class
 table(class)
-
 
 italy$Group <- as.factor(class)
 
@@ -2458,42 +2444,8 @@ Barplot(italy$Group, scale = c("percent"), conditional=TRUE, col="gray70",
 g <- table(italy$Group)
 round(prop.table(g),digits=4)
 
-g1 <- italy[italy$Group==1,]
-i <- table(g1$illness)
-round(prop.table(i),digits=4)
 
-g2 <- italy[italy$Group==2,]
-i <- table(g2$illness)
-round(prop.table(i),digits=4)
-
-par(mfrow=c(1,2))
-boxplot(g1$age, main="Gruppo 1", cex.lab=2, cex.axis=2, cex.main=2, cex.sub=2, cex=2, ylim=c(18,83))
-boxplot(g2$age, main="Gruppo 2", cex.lab=2, cex.axis=2, cex.main=2, cex.sub=2, cex=2, ylim=c(18,83))
-summary(g1$age)
-summary(g2$age)
-
-r <- table(g1$region)
-round(prop.table(r),digits=4)
-
-r <- table(g2$region)
-round(prop.table(r),digits=4)
-
-
-e <- table(g1$empl)
-round(prop.table(e),digits=4)
-
-e <- table(g2$empl)
-round(prop.table(e),digits=4)
-
-
-gen <- table(g1$gender)
-round(prop.table(gen),digits=4)
-
-gen <- table(g2$gender)
-round(prop.table(gen),digits=4)
-
-
-## BOOTSTRAP ####
+## Boostrap standard errors ####
 
 N <- nrow(m)
 M <- ncol(m)
@@ -2506,16 +2458,6 @@ res <- foreach (s=1:S, .packages = c("MASS","igraph")) %dopar% {
   m.new <- m[n.new, ]
   mod <- mlta(X=m.new, DM=DesMat, G = G, D = 1, wfix = FALSE, beta0=MOD$beta, nstarts=1)
 }
-
-res <- res[-112]
-res <- res[-155]
-res <- res[-618]
-res <- res[-877]
-res <- res[-904]
-res <- res[-906]
-res <- res[-995]
-
-S=994
 
 b1 <- matrix(NA, nrow=S , ncol=M)
 b2 <- matrix(NA, nrow=S , ncol=M)
@@ -2576,7 +2518,7 @@ se.beta4 <- apply(beta4, 2, sd)
 
 z <- qnorm(0.975)
 
-rosso <- rgb(0.7,0.13,0.13)
+rosso <- rgb(0.7,0.13,0.13) # colors for receiving nodes macro-categories
 giallo <- rgb(1, 0.5, 0)
 verde <- rgb(0,0.5,0)
 blu <- rgb(0.27,0.51,0.71)
@@ -2584,6 +2526,7 @@ blu <- rgb(0.27,0.51,0.71)
 MOD = mod[[7]]
 order(apply(MOD$b, 1, mean))
 
+# plot for b estimates                                      
 b_1 <- as.vector(MOD$b[1,])
 u.b1 <- b_1 + z*se.b1
 l.b1 <- b_1 - z*se.b1
@@ -2648,7 +2591,8 @@ axis(1, at=1:14, labels=c(1:14), las=1, cex=7)
 abline(h=0, lty=2)
 mtext(expression("b"),side=2,las=1,line=3, cex=2)
 
-
+                                        
+# plot for w estimates 
 w_1 <- as.vector(MOD$w[,,1])
 u.w1 <- w_1 + z*se.w1
 l.w1 <- w_1 - z*se.w1
@@ -2707,6 +2651,7 @@ abline(h=0, lty=2)
 mtext(expression("w"),side=2,las=1,line=2.5, cex=2)
 
 
+# plot for beta estimates 
 beta_2 <- as.vector(MOD$beta[,3])
 u.beta2 <- beta_2 + z*se.beta2
 l.beta2 <- beta_2 - z*se.beta2
